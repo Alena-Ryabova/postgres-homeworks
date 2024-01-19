@@ -6,7 +6,9 @@ student_id serial,
 first_name varchar,
 last_name varchar,
 birthday date,
-phone varchar
+phone varchar,
+
+CONSTRAINT pk_student_student_id PRIMARY KEY (student_id)
 );
 
 -- 2. Добавить в таблицу student колонку middle_name varchar

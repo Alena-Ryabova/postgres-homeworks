@@ -19,4 +19,12 @@ ALTER TABLE order_details
 DROP CONSTRAINT fk_order_details_products;
 
 DELETE FROM products
-WHERE discontinued=1;
+WHERE discontinued = 1;
+
+DELETE FROM order_details
+WHERE NOT EXISTS (SELECT * FROM products
+                  WHERE products.product_id = order_details.product_id);
+
+ALTER TABLE order_details
+ADD CONSTRAINT fk_order_details_products
+FOREIGN KEY (product_id) REFERENCES products (product_id);
